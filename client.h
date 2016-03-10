@@ -13,6 +13,7 @@ VERSION         : 1.0
 ***************************************************************
 */
 
+
 // Descripteur du client
 typedef struct {
 	char *nom;
@@ -43,11 +44,6 @@ client ChaineAClient(char *chaine, char separateur);
 void affNomPrenomClient(client *courant);
 
 
-/* Affichage de toutes les données d'un client
-*/
-void affClient(client *courant);
-
-
 /* Saisie d'un nouveau client
 
 Remarques :
@@ -59,4 +55,4 @@ Ressources :
 - SaisieChaine()
 - SaisieEntier()
 */
-client saisirClient();
+client saisirClient(File fileAttente);

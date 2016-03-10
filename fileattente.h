@@ -29,19 +29,19 @@ void detruireFileAttente(File *fileAttente);
 
 
 /* Resultat : Vrai (1) si la file est vide et Faux (0) sinon */
-int fileVide(typeFile *File);
+int fileVide(File *File);
 
 
 /* Resultat : Vrai (1) si la file est pleine et Faux (0) sinon */
-int filePleine(typeFile *File);
+int filePleine(File *File);
 
 
 /* Retourne le premier client */
-client *premierClient(typeFile *File);
+client *premierClient(File *File);
 
 
 /* Retourne le dernier client */
-client *dernierClient(typeFile *File);
+client *dernierClient(File *File);
 
 
 /* Recherche d'un client en fonction de sa priorité : retourne le client ayant
