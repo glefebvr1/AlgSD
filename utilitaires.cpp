@@ -1,11 +1,18 @@
 #include "utilitaires.h"
 
 
-// Propose et vérifie la saisie d'un entier par l'utilisateur
-// Tests :
-// - Saisie vide (\n)
-// - Saisie trop longue
-// - Saisie de valeur non entières
+/*
+Propose et vérifie la saisie d'un entier par l'utilisateur. Les saisies suivant sont refusées :
+	- Saisie vide (\n)
+	- Saisie trop longe (> 10 chiffres)
+	- Saisie de valeur non entières
+
+Paramètres :
+- Aucun
+
+Résultat :
+- Retourne un entier
+*/
 int Saisie_Entier(){
 	char entier[MAX_INT + 2];
 	int ret, valeur;
@@ -33,10 +40,17 @@ int Saisie_Entier(){
 	return valeur;
 }
 
-// Tests :
-// - Saisie d'une chaine trop longue
-// - allocation mémoire pour strlen + 1
-// - saisie d'une chaine vide (\n)
+/*
+Propose et vérifie la saisie d'une chaîne de caractère par l'utilisateur. Une allocation sera faite pour (strlen + 1) Les saisies suivant sont refusées :
+- Saisie vide (\n)
+- Saisie trop longe (> 100 caractères)
+
+Paramètres :
+- Aucun
+
+Résultat :
+- Retourne un entier
+*/
 char *Saisie_Chaine(){
 	char chaine_tmp[MAX_CHAINE_SAISIE + 2], *chaine;
 
@@ -65,4 +79,21 @@ char *Saisie_Chaine(){
 	strcpy(chaine, chaine_tmp);
 
 	return chaine;
+}
+
+
+/*
+Supprime tous les espaces (" ") d'une chaîne de caratère.
+
+Paramètre :
+- La chaîne de caractère dont on veut supprimer les espaces
+
+Résultat :
+- La chaîne n'a plus d'espace entre les caractères
+*/
+
+void suppEspace(char *chaine) {
+
+
+
 }

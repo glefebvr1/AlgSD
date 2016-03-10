@@ -62,7 +62,7 @@ void main() {
 			}
 			break;
 		case 2 :
-			//Ajoute un client avec saisie utilisateur si la file d'attente n'est pas pleine
+			//Ajoute un client avec saisie utilisateur, si la file d'attente n'est pas pleine
 			if (!filePleine(fileAttente)){
 				nouveau = saisirClient(fileAttente);
 				insererClient(fileAttente, nouveau);
@@ -71,7 +71,7 @@ void main() {
 			}
 			break;
 		case 3:
-			//Affiche tous les clients de la file d'attente si la file n'est pas vide
+			//Affiche tous les clients de la file d'attente, si la file n'est pas vide
 			if (!fileVide(fileAttente)) {
 				affFile(fileAttente);
 			} else {
@@ -80,7 +80,7 @@ void main() {
 			
 			break;
 		case 4 :
-			// Sauvegarde la file d'attente dans un fichier .txt si elle n'est pas vide
+			// Sauvegarde la file d'attente dans un fichier .txt, si elle n'est pas vide
 			if (!fileVide(fileAttente)){
 				cheminFichier = FCLIENT_SAUVEGARDE;
 				enregistrerFile(fileAttente, cheminFichier);
@@ -98,6 +98,6 @@ void main() {
 	}
 
 	// Destruction de la file
-	puts("Le programme va se fermé et la file d'attente sera detruite.");
+	puts("Le programme va se fermer et la file d'attente sera detruite.");
 	detruireFileAttente(fileAttente);
 }

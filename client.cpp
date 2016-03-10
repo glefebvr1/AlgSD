@@ -2,8 +2,15 @@
 #include "fileattente.h"
 #include "utilitaires.h"
 
-/* Conversion client a une chaine formatée, selon le séparateur fourni en paramètre
-Format : nom	prenom	miles	anciennete	noordre
+/* Conversion client a une chaine formatée
+Format ici : Nom Prénom Miles Ancienneté NoOrdre
+
+Paramètre :
+- Le client que l'on désire transformée en chaîne
+- Le caractère de séparation qui a été choisi pour séparer les données
+
+Résultat :
+- Retourne une chaîne formatée contenant les données du client passé en paramètre
 */
 char *clientAChaine(client *courant, char separateur){
 
@@ -28,8 +35,17 @@ char *clientAChaine(client *courant, char separateur){
 
 
 /*
-Conversion chaine formatée à un client selon le séparateur fourni en paramètre
-Format : nom	prenom	miles	anciennete	noordre
+Conversion d'une chaîne formatée à un client.
+Format ici : Nom Prénom Miles Ancienneté NoOrdre. Le format sera vérifié avant que la chaine ne soit traitée par cette fonction en utilisant XXXXXXXX.
+
+Paramètres :
+- La chaine que l'on désire transeformer en client
+- Le caractère de séparation qui a été choisi pour séparer les données
+
+Résultat :
+- Retourne une structure de type client selon les informations de la chaîne
+
+
 */
 client ChaineAClient(char *chaine, char separateur){
 
@@ -54,13 +70,19 @@ client ChaineAClient(char *chaine, char separateur){
 	nouveau.miles = miles;
 	nouveau.noordre = noordre;
 
-	return (nouveau);
+	return nouveau;
 
 }
 
 
 /*
 Affichage des nom et prénom d'un client
+
+Paramètre :
+- Le client dont on désire afficher le nom et le prénom
+
+Résultat :
+- Affiche à l'écran Le nom et le prénom du client (séparé d'un espace)
 */
 void affNomPrenomClient(client *courant){
 
@@ -70,32 +92,35 @@ void affNomPrenomClient(client *courant){
 
 
 /*
-Affichage de toutes les données d'un client
-*/
-void affClient(client *courant){
-
-
-	printf("%s %s %d %d %d", courant->nom, courant->prenom, courant->miles, courant->anciennete, courant->noordre);
-
-}
-
-
-/*
 Saisie d'un nouveau client par saisie utilisateur
 
-Remarques :
-- Le no d'arrivée est soit égal à 1 + dernier no d'arrivée, soit égal à 1 si
-c'est le premier client => déduit du nb d'éléments dans la liste
+Paramètre :
+- La file d'attente - Nécessaire pour l'utilisation de la fonction nbElements() qui permettra de calculer le noOrdre du client
+
+Résultat :
+- Retourne une structure de type client selon les données saisies par l'utilisateur, à savoir :
+	- le nom
+	- le prénom
+	- Le nombre de miles
+	- l'ancienneté
+  l'intégrité des données est vérifié dans les fonction SaisieChaine et SaisieEntier.
+
 */
 client saisirClient(File fileAttente){
 
 	client nouveau;
+	char *nom, *prenom;
 
 	printf("Entrez le nom du client : ");
-	nouveau.nom = saisieChaine();
+	nom = saisieChaine();
+	suppEspace(nom);
+	nouveau.nom = nom;
 
 	printf("Entrez le prénom du client : ");
-	nouveau.prenom = saisieChaine();
+	prenom = saisieChaine();
+	suppEspace(prenom);
+	nouveau.prenom = prenom;
+
 
 	printf("Entrez le nombre de miles du client : ");
 	nouveau.miles = saisieEntier();
