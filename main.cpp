@@ -101,3 +101,4 @@ void main() {
 	puts("Le programme va se fermer et la file d'attente sera detruite.");
 	detruireFileAttente(fileAttente);
 }
+
