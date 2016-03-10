@@ -18,6 +18,8 @@ VERSION         : 1.0
 #define MAX_INT 10
 #define MAX_CHAINE 100
 #define MAX_CHAINE_SAISIE 100
+#define MAXLIGNE 255
+#define SEPARATEUR "\t"
 
 
 /*

@@ -35,7 +35,7 @@ Paramètres :
 Résultat :
 - Retourne une chaîne formatée contenant les données du client passé en paramètre
 */
-char *clientAChaine(client *courant, char separateur);
+char *clientAChaine(client *courant, char separateur[]);
 
 
 /*
@@ -51,8 +51,7 @@ Résultat :
 
 
 */
-client ChaineAClient(char *chaine, char separateur);
-
+client ChaineAClient(char *chaine, char separateur[]);
 
 
 /*

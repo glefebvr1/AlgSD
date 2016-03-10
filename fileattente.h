@@ -13,42 +13,34 @@ VERSION         : 1.0
 ***************************************************************
 */
 
-#include "client.h"
 #include "listedble.h"
+#include "client.h"
 
 /* Définition de la file d'attente */
 typedef idListe File;
 
 
 /* Initialisation de la file d 'attente */
-File *initFileAttente();
+File initFileAttente();
 
 
 /* Destruction de la file d'attente */
-void detruireFileAttente(File *fileAttente);
+void detruireFileAttente(File fileAttente);
 
 
 /* Resultat : Vrai (1) si la file est vide et Faux (0) sinon */
-int fileVide(File *File);
-
-
-/* Resultat : Vrai (1) si la file est pleine et Faux (0) sinon */
-int filePleine(File *File);
+int fileVide(File fileAttente);
 
 
 /* Retourne le premier client */
-client *premierClient(File *File);
+client *premierClient(File fileAttente);
 
 
 /* Retourne le dernier client */
-client *dernierClient(File *File);
+client *dernierClient(File fileAttente);
 
-
-/* Recherche d'un client en fonction de sa priorité : retourne le client ayant
-la priorité précédant la priorité donnée ou NULL si la prioritée donnée devrait
-correspondre à un client positionné avant le 1er élément
-*/
-client *rechercherClient(File *fileAttente, float priorite);
+/* Afficher la liste, par prio*/
+void AffFile(File fileAttente);
 
 
 /* Insertion d'un nouveau client dans la file d'attente
@@ -61,7 +53,7 @@ Ressources :
 - void insereElt (idListe id, idElt courant, idElt nouveau);
 - client *rechercherClient(idListe fileAttente, float priorite);
 */
-void insererClient(File *fileAttente, client nvClient);
+void insererClient(File fileAttente, client nvClient);
 
 
 /* Suppression d'un client : supprime le client courant de la file
@@ -69,7 +61,7 @@ void insererClient(File *fileAttente, client nvClient);
 Ressources :
 - void enleverElt (idListe id, idElt courant);
 */
-void supprimerClient(File *fileAttente, client *courant);
+void supprimerClient(File fileAttente, client *courant);
 
 
 /* chargerFile : charge une liste de clients depuis un fichier texte dans la
@@ -79,7 +71,7 @@ Ressources :
 - client ChaineAClient(char *chaine, char separateur);
 - void insererClient(idListe fileAttente, client nvClient);
 */
-void chargerFile(File *fileAttente, char *cheminFichier);
+void chargerFile(File fileAttente, char *cheminFichier);
 
 
 /* enregistrerFile : enregistre la file d'attente dans un fichier texte
@@ -88,4 +80,4 @@ Ressources :
 - char *clientAChaine(client *courant, char separateur);
 - void insererClient(idListe fileAttente, client nvClient);
 */
-void enregistrerFile(File *fileAttente, char *cheminFichier);
+void enregistrerFile(File fileAttente, char *cheminFichier);
