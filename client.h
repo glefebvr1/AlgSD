@@ -28,14 +28,14 @@ typedef struct {
 Format :
 prenom,nom,miles,anciennete,noordre
 */
-char *clientAChaine(client *courant, char separateur);
+char *clientAChaine(client *courant, char separateur[]);
 
 
 /* Conversion chaine formatée -> client, avec le séparateur fourni en paramètre
 Format :
 prenom,nom,miles,anciennete,noordre
 */
-client ChaineAClient(char *chaine, char separateur);
+client ChaineAClient(char *chaine, char separateur[]);
 
 
 /* Affichage des nom et prénom d'un client

@@ -11,7 +11,10 @@ DATE            : 06.03.2016
 VERSION         : 1.0
 
 ***************************************************************
+*/
 
+#define MAXLIGNE 255
+#define SEPARATEUR "\t"
 
 
 // Propose et vérifie la saisie d'un entier par l'utilisateur
