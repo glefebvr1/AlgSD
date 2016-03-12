@@ -14,70 +14,129 @@ VERSION         : 1.0
 */
 
 #include "listedble.h"
-#include "client.h"
 
-/* Définition de la file d'attente */
+#ifndef CLIENTH
+	#define CLIENTH
+	#include "client.h"
+#endif
+
+#define MAXLIGNE 255
+#define SEPARATEUR "\t"
+
+
+/* Définition d'une file d'attente
+La file d'attente est une liste de type idListe
+*/
 typedef idListe File;
 
 
-/* Initialisation de la file d 'attente */
+/* Initialisation d'une file d'attente
+
+Résultat :
+- Valeur de retour File : file d'attente initialisée, prête à être utilisée
+*/
 File initFileAttente();
 
 
-/* Destruction de la file d'attente */
+/* Destruction d'une file d'attente
+
+Paramètres :
+- File fileAttente : file d'attente qui va être détruite
+
+Résultat :
+- Libération de la mémoire occupée par la file d'attente et de tous
+les clients contenus dans cette file
+*/
 void detruireFileAttente(File fileAttente);
 
 
-/* Resultat : Vrai (1) si la file est vide et Faux (0) sinon */
-int fileVide(File fileAttente);
+/* Détermine si une file d'attente est vide
 
+Paramètres :
+- File fileAttente : file d'attente à tester
 
-/* Retourne le premier client */
-client *premierClient(File fileAttente);
-
-
-/* Retourne le dernier client */
-client *dernierClient(File fileAttente);
-
-/* Afficher la liste, par prio*/
-void AffFile(File fileAttente);
-
-
-/* Insertion d'un nouveau client dans la file d'attente
-
-Remarques :
-- Le nouveau client doit être inséré à sa position correcte (la file est
-ordonnée par priorité) => on doit rechercher la position
-
-Ressources :
-- void insereElt (idListe id, idElt courant, idElt nouveau);
-- client *rechercherClient(idListe fileAttente, float priorite);
+Résultat :
+- Valeur de retour bool : true si la file est vide, false sinon
 */
-void insererClient(File fileAttente, client nvClient);
+bool fileVide(File fileAttente);
 
 
-/* Suppression d'un client : supprime le client courant de la file
+/* Retourne le premier client d'une file d'attente
 
-Ressources :
-- void enleverElt (idListe id, idElt courant);
+Paramètres :
+- File fileAttente : file d'attente
+
+Résultat :
+- Valeur de retour typeClient * : pointeur vers le 1er client, NULL si la file est vide
+
 */
-void supprimerClient(File fileAttente, client *courant);
+typeClient *premierClient(File fileAttente);
 
 
-/* chargerFile : charge une liste de clients depuis un fichier texte dans la
-file d'attente
+/* Afficher tous les clients contenus dans la file d'attente
 
-Ressources :
-- client ChaineAClient(char *chaine, char separateur);
-- void insererClient(idListe fileAttente, client nvClient);
+Paramètres :
+- File fileAttente : file d'attente
+
+Résultat :
+- Affiche tous les clients contenus dans la file, sans modifier l'ordre de la file
 */
-void chargerFile(File fileAttente, char *cheminFichier);
+void affFile(File fileAttente);
 
 
-/* enregistrerFile : enregistre la file d'attente dans un fichier texte
+/* Insertion d'un nouveau client dans la file d'attente par ordre de priorité décroissante
 
-Ressources :
-- char *clientAChaine(client *courant, char separateur);
-- void insererClient(idListe fileAttente, client nvClient);
+Paramètres :
+- File fileAttente : file d'attente
+- typeClient *nvClient : pointeur vers la structure client à ajouter dans la file
+
+Résultat :
+- Ajoute la structure client dans la file, en respectant un ordre de priorité décroissante.
+*/
+void insererClient(File fileAttente, typeClient *nvClient);
+
+
+/* Suppression d'un client
+
+Paramètres :
+- File fileAttente : file d'attente
+- typeClient *courant : pointeur vers la structure client à supprimer de la file
+
+Résultat :
+- Supprime la structure client de la file et détruit cette structure et son contenu
+*/
+void supprimerClient(File fileAttente, typeClient *courant);
+
+
+/* Charge une liste de clients depuis un fichier texte vers une file d'attente
+Format du fichier :
+- Un client par ligne
+- format de la ligne : Nom[sep]Prénom[sep]Miles[sep]Ancienneté[sep]NoOrdre
+- [sep] : séparateur
+
+Paramètres :
+- File fileAttente : file d'attente
+- char *cheminFichier : chaîne contenant le chemin du fichier à charger
+
+Résultat :
+- Ajoute chaque client présent dans le fichier dans la file d'attente, en
+respectant un ordre de priorité décroissante.
+- Valeur de retour int : dernier n° d'ordre attribué (valeur la plus élevée)
+*/
+int chargerFile(File fileAttente, char *cheminFichier);
+
+
+/* Enregistre une file d'attente dans un fichier texte
+Format du fichier :
+- Un client par ligne
+- format de la ligne : Nom[sep]Prénom[sep]Miles[sep]Ancienneté[sep]NoOrdre
+- [sep] : séparateur
+
+Paramètres :
+- File fileAttente : file d'attente
+- char *cheminFichier : chaîne contenant le chemin du fichier à enregistrer
+
+Résultat :
+- Enregistre chaque client présent dans la file d'attente dans un fichier texte
 */
 void enregistrerFile(File fileAttente, char *cheminFichier);

@@ -11,54 +11,40 @@ DATE            : 06.03.2016
 VERSION         : 1.0
 
 ***************************************************************/
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 
 #define MAX_INT 10
 #define MAX_CHAINE 100
 #define MAX_CHAINE_SAISIE 100
-#define MAXLIGNE 255
-#define SEPARATEUR "\t"
 
 
-/*
-Propose et vérifie la saisie d'un entier par l'utilisateur. Les saisies suivant sont refusées :
+/* Propose et vérifie la saisie d'un entier par l'utilisateur. Les saisies suivantes sont refusées :
 - Saisie vide (\n)
-- Saisie trop longe (> 10 chiffres)
+- Saisie trop longue (> MAX_CHAINE)
 - Saisie de valeur non entières
 
-Paramètres :
-- Aucun
-
 Résultat :
-- Retourne un entier
+- Valeur de retour int : entier saisi par l'utilisateur
 */
 int saisieEntier();
 
 
-/*
-Propose et vérifie la saisie d'une chaîne de caractère par l'utilisateur. Une allocation sera faite pour (strlen + 1) Les saisies suivant sont refusées :
+/* Propose et vérifie la saisie d'une chaîne de caractère par l'utilisateur. 
+Les saisies suivant sont refusées :
 - Saisie vide (\n)
-- Saisie trop longe (> 100 caractères)
-
-Paramètres :
-- Aucun
+- Saisie trop longue (> MAX_CHAINE_SAISIE)
 
 Résultat :
-- Retourne un entier
+- Valeur de retour char * : chaîne saisie par l'utilisateur
 */
 char *saisieChaine();
 
 
-
-/*
-Supprime tous les espaces (" ") d'une chaîne de caratère.
+/* Supprime tous les espaces (" ") d'une chaîne de caratère.
 
 Paramètre :
 - La chaîne de caractère dont on veut supprimer les espaces
 
 Résultat :
-- La chaîne n'a plus d'espace entre les caractères
+- La chaîne passée en paramètre est nettoyée des caractères espace
 */
 void suppEspace(char *chaine);

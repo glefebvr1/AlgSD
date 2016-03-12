@@ -14,71 +14,74 @@ VERSION         : 1.0
 */
 
 
-// Descripteur du client
-typedef struct {
-	char *nom;
-	char *prenom;
-	int miles;
-	int anciennete;
-	int noordre;
-	float priorite;
-} client;
+// Descripteur de client
+typedef struct client {
+	char *nom;			// Nom du client
+	char *prenom;		// Prénom du client
+	int miles;			// Nombre de Miles parcourus
+	int anciennete;		// Nombre d'années d'inscription au programme de fidélité
+	int noordre;		// N° d'ordre d'arrivée (commence à 1)
+	int priorite;		// Priorité du client, calculée selon la formule : miles / 1000 + anciennete - noordre
+} typeClient;
 
 
-/* Conversion client a une chaine formatée
-Format ici : Nom Prénom Miles Ancienneté NoOrdre
-
-Paramètres :
-- Le client que l'on désire transformée en chaîne
-- Le caractère de séparation qui a été choisi pour séparer les données
-
-Résultat :
-- Retourne une chaîne formatée contenant les données du client passé en paramètre
-*/
-char *clientAChaine(client *courant, char separateur[]);
-
-
-/*
-Conversion d'une chaîne formatée à un client.
-Format ici : Nom Prénom Miles Ancienneté NoOrdre. Le format sera vérifié avant que la chaine ne soit traitée par cette fonction en utilisant XXXXXXXX.
+/* Conversion structure client => chaîne
+Format chaîne : Nom[sep]Prénom[sep]Miles[sep]Ancienneté[sep]NoOrdre
+[sep] : séparateur
 
 Paramètres :
-- La chaine que l'on désire transeformer en client
-- Le caractère de séparation qui a été choisi pour séparer les données
+- typeClient *courant : pointeur vers structure client
+- char separateur[] : chaîne séparant chaque variable dans la chaîne formatée
 
 Résultat :
-- Retourne une structure de type client selon les informations de la chaîne
-
-
+- Valeur de retour char * : chaîne formatée contenant les données du client passé en paramètre
 */
-client ChaineAClient(char *chaine, char separateur[]);
+char *clientAChaine(typeClient *courant, char separateur[]);
 
 
-/*
-Affichage des nom et prénom d'un client
+/* Conversion chaîne => structure client
+Format chaîne : Nom[sep]Prénom[sep]Miles[sep]Ancienneté[sep]NoOrdre
+[sep] : séparateur
+
+Paramètres :
+- char *chaine : chaîne formatée
+- char separateur[] : chaîne séparant chaque variable dans la chaîne formatée
+
+Résultat :
+- Valeur de retour typeClient * : pointeur vers une nouvelle structure client
+*/
+typeClient *ChaineAClient(char *chaine, char separateur[]);
+
+
+/* Affichage des nom et prénom d'un client
 
 Paramètre :
-- Le client dont on désire afficher le nom et le prénom
+- typeClient *courant : pointeur vers une structure client
 
 Résultat :
 - Affiche à l'écran Le nom et le prénom du client (séparé d'un espace)
 */
-void affNomPrenomClient(client *courant);
+void affNomPrenomClient(typeClient *courant);
 
 
-/*
-Saisie d'un nouveau client par saisie utilisateur
+/* Création d'un nouveau client via saisie utilisateur
 
 Paramètre :
-- La file d'attente - Nécessaire pour l'utilisation de la fonction nbElements() qui permettra de calculer le noOrdre du client
+- int *maxNoOrdre : pointeur vers une variable contenant le dernier n° d'ordre attribué (le plus élevé)
 
 Résultat :
-- Retourne une structure de type client selon les données saisies par l'utilisateur, à savoir :
-- le nom
-- le prénom
-- Le nombre de miles
-- l'ancienneté
-l'intégrité des données est vérifié dans les fonction SaisieChaine et SaisieEntier.
+- Valeur de retour typeClient *courant : pointeur vers une nouvelle structure client
 
 */
-client saisirClient(File fileAttente);
+typeClient *saisirClient(int *maxNoOrdre);
+
+
+/* Destruction d'un client : libération de la mémoire
+
+Paramètres :
+- typeClient *cliCour : pointeur vers vers la structure client à détruire
+
+Résultats :
+- Libération de la mémoire occupée par la structure
+*/
+void detruireClient(typeClient *cliCour);
