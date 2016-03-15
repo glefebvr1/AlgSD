@@ -126,9 +126,21 @@ typeClient *saisirClient(int *maxNoOrdre){
 
 	printf("Entrez le nombre de miles du client : ");
 	nouveau->miles = saisieEntier();
+	while (nouveau->miles < 0) {
+		puts("Nombres négatifs interdits");
+
+		printf("Entrez le nombre de miles du client : ");
+		nouveau->miles = saisieEntier();
+	}
 
 	printf("Entrez l'ancienneté du client : ");
 	nouveau->anciennete = saisieEntier();
+	while (nouveau->anciennete < 0) {
+		puts("Nombres négatifs interdits");
+
+		printf("Entrez l'ancienneté du client : ");
+		nouveau->anciennete = saisieEntier();
+	}
 
 	*maxNoOrdre = *maxNoOrdre + 1;
 	nouveau->noordre = *maxNoOrdre;
