@@ -147,7 +147,10 @@ Résultats :
 - Libération de la mémoire occupée par la structure
 */
 void detruireClient(typeClient *cliCour) {
-	free(cliCour->nom);
-	free(cliCour->prenom);
-	free(cliCour);
+	
+	if (cliCour != NULL) {
+		free(cliCour->nom);
+		free(cliCour->prenom);
+		free(cliCour);
+	}
 }

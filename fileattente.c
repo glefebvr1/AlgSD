@@ -45,10 +45,12 @@ void detruireFileAttente(idListe fileAttente) {
 	eltCour = premierElt(fileAttente);
 
 	// On détruit chaque client présent dans la file
-	do {
-		detruireClient(valElt(eltCour));
-		eltCour = suivantElt(eltCour);
-	} while (eltCour != premierElt(fileAttente));
+	if (!fileVide(fileAttente)) {
+		do {
+			detruireClient(valElt(eltCour));
+			eltCour = suivantElt(eltCour);
+		} while (eltCour != premierElt(fileAttente));
+	}
 
 	detruireListe(fileAttente);
 }
